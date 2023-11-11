@@ -5,6 +5,7 @@ Jawaban :
 | ------------- | ------------- |
 | menambahkan halaman baru ke tumpukan halaman | menambahkan halaman baru ke tumpukan halaman, tetapi hal itu juga menggantikan halaman saat ini dengan yang baru  |
 | Jika Anda menggunakan Navigator.push(), ketika pengguna menekan tombol "Back" pada perangkat atau menggunakan Navigator.pop(), mereka akan kembali ke halaman sebelumnya dalam tumpukan halaman | Ketika Anda menggunakan Navigator.pushReplacement(), halaman saat ini dihapus dari tumpukan dan digantikan oleh halaman baru |
+
 Contoh :
 1. Navigator.pushReplacement()
     ```dart
