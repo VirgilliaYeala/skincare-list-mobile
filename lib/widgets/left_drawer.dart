@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skincare_list/screens/list_skincare.dart';
 import 'package:skincare_list/screens/menu.dart';
 import 'package:skincare_list/screens/skincarelist_form.dart';
 
@@ -27,24 +28,27 @@ class LeftDrawer extends StatelessWidget {
                   ),
                 ),
                 Padding(padding: EdgeInsets.all(10)),
-                Text("Catat seluruh skincare favoritemu di sini!",
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 15,
-                      color: Color(0xFFA42153),
-                      fontWeight: FontWeight.normal,
-                    ),
+                Text(
+                  "Catat seluruh skincare favoritemu di sini!",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Color(0xFFA42153),
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ],
             ),
           ),
           ListTile(
-            leading: const Icon(Icons.home_outlined,
-            color:Color(0xFFEBC2D5),
+            leading: const Icon(
+              Icons.home_outlined,
+              color: Color(0xFFEBC2D5),
             ),
-            title: const Text('Halaman Utama',
-            style: TextStyle(
-                color:Color(0xFFEBC2D5),
+            title: const Text(
+              'Halaman Utama',
+              style: TextStyle(
+                color: Color(0xFFEBC2D5),
               ),
             ),
             // Bagian redirection ke MyHomePage
@@ -57,13 +61,14 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.add_shopping_cart,
-            color:Color(0xFFEBC2D5),
+            leading: const Icon(
+              Icons.add_shopping_cart,
+              color: Color(0xFFEBC2D5),
             ),
             title: const Text(
               'Tambah Skincare',
               style: TextStyle(
-                color:Color(0xFFEBC2D5),
+                color: Color(0xFFEBC2D5),
               ),
             ),
             // Bagian redirection ke ShopFormPage
@@ -72,10 +77,24 @@ class LeftDrawer extends StatelessWidget {
               setelah halaman ShopFormPage sudah dibuat.
               */
               Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ShopFormPage(),
+                  ));
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.shopping_basket, color: Color(0xFFEBC2D5)),
+            title: const Text('Lihat Skincare',
+              style: TextStyle(
+                  color: Color(0xFFEBC2D5),
+                ),
+            ),
+            onTap: () {
+              // Route menu ke halaman produk
+              Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => const ShopFormPage(),
-                )
+                MaterialPageRoute(builder: (context) => const ProductPage()),
               );
             },
           ),

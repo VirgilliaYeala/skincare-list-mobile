@@ -1,45 +1,69 @@
-import 'package:flutter/material.dart';
+// To parse this JSON data, do
+//
+//     final product = productFromJson(jsonString);
 
-class Skincare {
-  String? brand;
-  String? name;
-  int? amount;
-  int? price;
-  String? description;
+import 'dart:convert';
 
-  Skincare({
-    required this.brand,
-    required this.name,
-    required this.amount,
-    required this.price,
-    required this.description,
-  });
+List<Product> productFromJson(String str) => List<Product>.from(json.decode(str).map((x) => Product.fromJson(x)));
 
-   Widget show() {
-    return Card(
-      color: const Color(0xFFEBC2D5),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-        
-        side: const BorderSide(
-          color: Color(0xFFA42153),
-        ),
-      ),
-      elevation: 2,
-      shadowColor: Colors.black,
-      child: ListTile(
-        title: Text(
-          "$brand - $name",
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w400,
-            color: Color(0xFFA42153)
-          ),
-        ),
-        subtitle: Text(
-          "$description\nJumlah: $amount \nHarga: $price"
-          )
-      ),
+String productToJson(List<Product> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+class Product {
+    String model;
+    int pk;
+    Fields fields;
+
+    Product({
+        required this.model,
+        required this.pk,
+        required this.fields,
+    });
+
+    factory Product.fromJson(Map<String, dynamic> json) => Product(
+        model: json["model"],
+        pk: json["pk"],
+        fields: Fields.fromJson(json["fields"]),
     );
-  }
+
+    Map<String, dynamic> toJson() => {
+        "model": model,
+        "pk": pk,
+        "fields": fields.toJson(),
+    };
+}
+
+class Fields {
+    int user;
+    String brand;
+    String name;
+    int amount;
+    String price;
+    String description;
+
+    Fields({
+        required this.user,
+        required this.brand,
+        required this.name,
+        required this.amount,
+        required this.price,
+        required this.description,
+    });
+
+    factory Fields.fromJson(Map<String, dynamic> json) => Fields(
+        user: json["user"],
+        brand: json["brand"],
+        name: json["name"],
+        amount: json["amount"],
+        price: json["price"],
+        description: json["description"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "user": user,
+        "brand": brand,
+        "name": name,
+        "amount": amount,
+        "price": price,
+        "description": description,
+    };
 }
